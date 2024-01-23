@@ -11,6 +11,11 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import Navbar from "../Navbar.js";
+
+function App() {
+  return <Navbar />;
+}
 
 /**
  * Define the "App" component
