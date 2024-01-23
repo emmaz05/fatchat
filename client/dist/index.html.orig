@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>navbar</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+<<<<<<< HEAD
+    <div id="root"></div>
+    <script src="/bundle.js"></script>
+
+    <div id="map"></div>
+
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlBOf3JlJSjNKoE3iYd6wUgMXw5EuTLng&callback=initMap"
+    ></script>
+    <script src="/app.js"></script>
+=======
+    <header class="header">
+      <a href="#" class="fatchat">FatChat</a>
+      <nav class="navbar">
+        <a href="/home">Home</a>
+        <a href="/circles">Circles</a>
+        <a href="/map">Map</a>
+        <a href="/profile">Profile</a>
+      </nav>
+    </header>
+>>>>>>> 3a8712d3093bf7375e498c533b5873f7d9ad9dc8
+  </body>
+</html>
