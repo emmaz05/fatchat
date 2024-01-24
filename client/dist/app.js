@@ -1,5 +1,12 @@
 var map;
 var marker;
+var infoWindow;
+
+const Post = require("../../server/models/post.js");
+
+router.get("/posts", (req, res) => {
+  Post.find({}).then((posts) => res.send(posts));
+});
 
 function initMap() {
   var options = {
@@ -18,21 +25,15 @@ function initMap() {
     icon: image,
   });
 
-  marker.addEventListener("click", function () {
-    openPostWindow();
-  });
-}
-
-function openPostWindow() {
-  var postContent =
-    '<div id="content">' +
-    '<h1 id="postTitle" class="postTitle">Sam Post</h1>' +
-    "<p>I love to eat.</p>" +
-    "</div>";
-
-  var postwindow = new google.maps.InfoWindow({
-    content: postContent,
+  infoWindow = new google.maps.InfoWindow({
+    content:
+      '<div id="content">' +
+      '<h1 id="postTitle" class="postTitle">Sam Manolis</h1>' +
+      "<p>I love to eat.</p>" +
+      "</div>",
   });
 
-  postwindow.open(map, marker);
+  marker.addListener("click", function () {
+    infoWindow.open(map, marker);
+  });
 }
