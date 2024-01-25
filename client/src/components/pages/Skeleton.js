@@ -1,18 +1,66 @@
-import React from "react";
-import {
-  GoogleOAuthProvider,
-  GoogleLogin,
-  googleLogout,
-} from "@react-oauth/google";
+import React, { useState, useEffect } from "react";
+import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
+import axios from "axios";
+import Map from "./Map";
 
 import "../../utilities.css";
 import "./Skeleton.css";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
-const GOOGLE_CLIENT_ID =
-  "163008839093-p24qoqcjhot1em5llpo21ka3rka04dqi.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "163008839093-p24qoqcjhot1em5llpo21ka3rka04dqi.apps.googleusercontent.com";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
+  // var map;
+  // var marker;
+  // var infoWindow;
+
+  // function initMap() {
+  //   console.log("fjrieowfjr");
+  //   var options = {
+  //     center: { lat: 42.3601, lng: -71.0942 },
+  //     zoom: 15,
+  //   };
+
+  //   map = new google.maps.Map(document.getElementById("map"), options);
+
+  //   const image = "ice cream.png";
+
+  //   marker = new google.maps.Marker({
+  //     position: { lat: 42.3601, lng: -71.0942 },
+  //     map,
+  //     title: "test post",
+  //     icon: image,
+  //   });
+
+  //   infoWindow = new google.maps.InfoWindow({
+  //     content:
+  //       '<div id="content">' +
+  //       '<h1 id="postTitle" class="postTitle">Sam Manolis</h1>' +
+  //       "<p>I love to eat.</p>" +
+  //       "</div>",
+  //   });
+
+  //   marker.addListener("click", function () {
+  //     infoWindow.open(map, marker);
+  //   });
+  // }
+
+  const [mapsData, setMapsData] = useState(null);
+
+  useEffect(() => {
+    const fetchMapsData = async () => {
+      try {
+        // Make a request to your server's endpoint
+        const response = await axios.get("/maps-data");
+        setMapsData(response.data);
+      } catch (error) {
+        console.error("Error fetching maps data:", error);
+      }
+    };
+
+    fetchMapsData();
+  }, []); // Empty dependency array ensures the effect runs once when the component mounts
+
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       {userId ? (
@@ -25,32 +73,30 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           Logout
         </button>
       ) : (
-        <GoogleLogin
-          onSuccess={handleLogin}
-          onError={(err) => console.log(err)}
-        />
+        <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
       )}
-      <h1>Good luck on your project :)</h1>
-      <h2> What you need to change in this skeleton</h2>
-      <ul>
-        <li>
-          Change the Frontend CLIENT_ID (Skeleton.js) to your team's CLIENT_ID
-          (obtain this at http://weblab.is/clientid)
-        </li>
-        <li>Change the Server CLIENT_ID to the same CLIENT_ID (auth.js)</li>
-        <li>
-          Change the Database SRV (mongoConnectionURL) for Atlas (server.js).
-          You got this in the MongoDB setup.
-        </li>
-        <li>
-          Change the Database Name for MongoDB to whatever you put in the SRV
-          (server.js)
-        </li>
-      </ul>
-      <h2>How to go from this skeleton to our actual app</h2>
-      <a href="https://docs.google.com/document/d/110JdHAn3Wnp3_AyQLkqH2W8h5oby7OVsYIeHYSiUzRs/edit?usp=sharing">
-        Check out this getting started guide
-      </a>
+
+      <header class="header">
+        <a href="#" class="fatchat">
+          FatChat
+        </a>
+        <nav class="navbar">
+          <a href="">Home</a>
+          <a href="">Circles</a>
+          <a href="./Map.jsx">Map</a>
+          <a href="./Profile.jsx">Profile</a>
+        </nav>
+      </header>
+
+      <Map />
+      {/* {mapsData && <Maps locations={mapsData} />}
+      <script
+        async
+        defer
+        src={
+          "https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places`"
+        }
+      ></script> */}
     </GoogleOAuthProvider>
   );
 };

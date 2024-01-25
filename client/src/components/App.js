@@ -11,11 +11,7 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
-import Navbar from "../Navbar.js";
-
-function App() {
-  return <Navbar />;
-}
+import mainPage from "../components/mainPage/mainPage.js";
 
 /**
  * Define the "App" component
@@ -60,6 +56,7 @@ const App = () => {
           />
         }
       />
+      <Route path="/main" element={<mainPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

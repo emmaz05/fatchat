@@ -27,6 +27,7 @@ const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
+const axios = require("axios");
 
 const api = require("./api");
 const auth = require("./auth");
@@ -76,6 +77,24 @@ app.use(auth.populateCurrentUser);
 
 // connect user-defined routes
 app.use("/api", api);
+
+app.get("/maps-data", async (req, res) => {
+  try {
+    // Make a request to Google Maps API from the server
+    const response = await axios.get(
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM"
+    );
+
+    // Process the data if needed
+    const processedData = response.data;
+
+    // Send the processed data to the React app
+    res.json(processedData);
+  } catch (error) {
+    console.error("Error fetching data from Google Maps API:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 // load the compiled react files, which will serve /index.html and /bundle.js
 const reactPath = path.resolve(__dirname, "..", "client", "dist");

@@ -7,6 +7,7 @@ import App from "./components/App.js";
 // renders React Component "Root" into the DOM element with ID "root"
 const container = document.getElementById("root");
 const root = createRoot(container);
+console.log("root", root);
 root.render(
   <BrowserRouter>
     <App />
