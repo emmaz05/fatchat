@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Post = require("./models/post");
 
 // import authentication library
 const auth = require("./auth");
@@ -35,16 +36,33 @@ router.get("/whoami", (req, res) => {
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user)
-    socketManager.addUser(
-      req.user,
-      socketManager.getSocketFromSocketID(req.body.socketid)
-    );
+    socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
 
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+router.get("/posts", (req, res) => {
+  Post.find({}).then((posts) => res.send(posts));
+});
+
+router.post("/post", auth.ensureLoggedIn, (req, res) => {
+  const newPost = new Post({
+    creator_name: req.user.name,
+    caption: req.body.caption,
+    location: req.body.location,
+    // lat: req.body.lat,
+    // lng: req.body.lng,
+
+    // creator_id: req.user._id,
+    // creator_name: req.user.name,
+    // content: req.body.content,
+  });
+
+  newPost.save().then((post) => res.send(post));
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

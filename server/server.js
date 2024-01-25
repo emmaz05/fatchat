@@ -27,7 +27,6 @@ const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
-const axios = require("axios");
 
 const api = require("./api");
 const auth = require("./auth");

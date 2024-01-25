@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
 import axios from "axios";
 import Map from "./Map";
+import { NewPost } from "../modules/NewPostInput";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -54,14 +55,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       </header>
 
       <Map />
-      {/* {mapsData && <Maps locations={mapsData} />}
-      <script
-        async
-        defer
-        src={
-          "https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places`"
-        }
-      ></script> */}
+      <NewPost />
     </GoogleOAuthProvider>
   );
 };
