@@ -10,41 +10,6 @@ import "./Skeleton.css";
 const GOOGLE_CLIENT_ID = "163008839093-p24qoqcjhot1em5llpo21ka3rka04dqi.apps.googleusercontent.com";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
-  // var map;
-  // var marker;
-  // var infoWindow;
-
-  // function initMap() {
-  //   console.log("fjrieowfjr");
-  //   var options = {
-  //     center: { lat: 42.3601, lng: -71.0942 },
-  //     zoom: 15,
-  //   };
-
-  //   map = new google.maps.Map(document.getElementById("map"), options);
-
-  //   const image = "ice cream.png";
-
-  //   marker = new google.maps.Marker({
-  //     position: { lat: 42.3601, lng: -71.0942 },
-  //     map,
-  //     title: "test post",
-  //     icon: image,
-  //   });
-
-  //   infoWindow = new google.maps.InfoWindow({
-  //     content:
-  //       '<div id="content">' +
-  //       '<h1 id="postTitle" class="postTitle">Sam Manolis</h1>' +
-  //       "<p>I love to eat.</p>" +
-  //       "</div>",
-  //   });
-
-  //   marker.addListener("click", function () {
-  //     infoWindow.open(map, marker);
-  //   });
-  // }
-
   const [mapsData, setMapsData] = useState(null);
 
   useEffect(() => {
