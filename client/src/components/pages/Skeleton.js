@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
 import axios from "axios";
 import Map from "./Map";
-
+import Profile from "./Profile";
+import Feed from "./Feed";
 import "../../utilities.css";
 import "./Skeleton.css";
 
@@ -46,10 +47,10 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           FatChat
         </a>
         <nav class="navbar">
-          <a href="">Home</a>
-          <a href="">Circles</a>
-          <a href="./Map.jsx">Map</a>
-          <a href="./Profile.jsx">Profile</a>
+          <a href="./">Home</a>
+          <a href="./feed">Circles</a>
+          <a href="./">Map</a>
+          <a href="./profile">Profile</a>
         </nav>
       </header>
 
