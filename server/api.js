@@ -51,8 +51,9 @@ router.get("/posts", (req, res) => {
 router.post("/post", auth.ensureLoggedIn, (req, res) => {
   const newPost = new Post({
     creator_name: req.user.name,
+    creator_id: req.user._id,
     caption: req.body.caption,
-    location: req.body.location,
+    coord: req.body.coord,
     // lat: req.body.lat,
     // lng: req.body.lng,
 
@@ -60,6 +61,8 @@ router.post("/post", auth.ensureLoggedIn, (req, res) => {
     // creator_name: req.user.name,
     // content: req.body.content,
   });
+
+  console.log(newPost);
 
   newPost.save().then((post) => res.send(post));
 });

@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   creator_name: String,
+  creator_id: String,
+  coord: Object,
   caption: String,
-  location: String,
   // lat: Number,
   // lng: Number,
 

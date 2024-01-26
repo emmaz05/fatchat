@@ -1,33 +1,35 @@
 import React, { useState } from "react";
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 
 import "./NewPost.css";
 import { post } from "../../utilities";
 
 const NewPostInput = (props) => {
   const [captionVal, setCaptionVal] = useState("");
-  const [locVal, setLocVal] = useState("");
+  const [address, setAddress] = useState("");
 
-  // called whenever the user types in the new post input box
+  // called whenever the user types in the new post input bo
   const handleCapChange = (event) => {
     setCaptionVal(event.target.value);
   };
 
-  const handleLocChange = (event) => {
-    setLocVal(event.target.value);
+  const handleCapSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const results = await geocodeByAddress(address);
+      const latLng = await getLatLng(results[0]);
+      console.log(latLng);
+      props.onSubmit(captionVal, latLng);
+      setCaptionVal("");
+      setAddress("");
+    } catch (error) {
+      console.error("Error fetching geocode:", error);
+    }
   };
 
-  // called when the user hits "Submit" for a new post
-  const handleCapSubmit = (event) => {
-    event.preventDefault();
-    props.onSubmit && props.onSubmit(captionVal);
-    setCaptionVal("");
-    handleLocSubmit();
-  };
-
-  const handleLocSubmit = (event) => {
-    event.preventDefault();
-    props.onSubmit && props.onSubmit(locVal);
-    setLocVal("");
+  const handleSelect = async (value) => {
+    setAddress(value);
   };
 
   return (
@@ -39,13 +41,31 @@ const NewPostInput = (props) => {
         onChange={handleCapChange}
         className="NewPostInput-caption"
       />
-      <input
-        type="text"
-        placeholder={"location"}
-        value={locVal}
-        onChange={handleLocChange}
-        className="NewPostInput-location"
-      />
+      <div className="search-bar">
+        <PlacesAutocomplete
+          bootstrapURLKeys={{
+            key: "AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM",
+            libraries: ["places"],
+          }}
+          value={address}
+          onChange={(value) => setAddress(value)}
+          onSelect={handleSelect}
+        >
+          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+            <>
+              <input {...getInputProps({ placeholder: "Search places..." })} />
+              <div>
+                {loading && <div>Loading...</div>}
+                {suggestions.map((suggestion) => (
+                  <div key={suggestion.id} {...getSuggestionItemProps(suggestion)}>
+                    {suggestion.description}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </PlacesAutocomplete>
+      </div>
       <button
         type="submit"
         className="NewPostInput-button u-pointer"
@@ -59,10 +79,10 @@ const NewPostInput = (props) => {
 };
 
 const NewPost = (props) => {
-  const addPost = (captionVal, locVal) => {
-    const body = { caption: captionVal, location: locVal };
+  const addPost = (captionVal, latLng) => {
+    const body = { caption: captionVal, coord: latLng };
     post("/api/post", body).then((post) => {
-      // props.addNewPost(post);
+      props.addNewPost(post);
     });
   };
   return <NewPostInput onSubmit={addPost} />;

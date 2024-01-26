@@ -53,7 +53,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           <a href="./Profile.jsx">Profile</a>
         </nav>
       </header>
-
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script>
       <Map />
       <NewPost />
     </GoogleOAuthProvider>

@@ -1,5 +1,6 @@
 /* Fill me in :) */
 .Map {
+  position: relative;
   height: 600px;
   width: 100vw;
 }
@@ -8,6 +9,40 @@
   height: 100%;
   width: 100%;
 }
+
+/* .search-bar {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input {
+  width: 300px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.search-bar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-bar li {
+  cursor: pointer;
+  padding: 5px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.search-bar li:hover {
+  background-color: #e0e0e0;
+} */
 
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600;700&display=swap");
 
