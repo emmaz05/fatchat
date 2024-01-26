@@ -46,22 +46,22 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           FatChat
         </a>
         <nav class="navbar">
-          <a href="">Home</a>
-          <a href="">Circles</a>
-          <a href="./Map.jsx">Map</a>
-          <a href="./Profile.jsx">Profile</a>
+          <a href="./home">Home</a>
+          <a href="./circles">Circles</a>
+          <a href="./map">Map</a>
+          <a href="./profile">Profile</a>
         </nav>
       </header>
 
       <Map />
-      {/* {mapsData && <Maps locations={mapsData} />}
+      {mapsData && <Maps locations={mapsData} />}
       <script
         async
         defer
         src={
           "https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places`"
         }
-      ></script> */}
+      ></script>
     </GoogleOAuthProvider>
   );
 };

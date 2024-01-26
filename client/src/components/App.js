@@ -12,7 +12,7 @@ import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
 import mainPage from "../components/mainPage/mainPage.js";
-
+import Profile from "./pages/Profile.jsx";
 /**
  * Define the "App" component
  */
@@ -56,7 +56,8 @@ const App = () => {
           />
         }
       />
-      <Route path="/main" element={<mainPage />} />
+
+      <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
