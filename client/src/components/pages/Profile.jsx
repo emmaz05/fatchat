@@ -1,11 +1,19 @@
 import React from "react";
-import Navbar from "../Navbar";
 
 const Profile = () => {
-  <div>
-    <Navbar />
-    {<h1>profile</h1>}
-  </div>;
+  return (
+    <header class="header">
+      <a href="#" class="fatchat">
+        FatChat
+      </a>
+      <nav class="navbar">
+        <a href="./">Home</a>
+        <a href="./circles">Circles</a>
+        <a href="./map">Map</a>
+        <a href="./profile">Profile</a>
+      </nav>
+    </header>
+  );
 };
 
 export default Profile;
