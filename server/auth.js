@@ -13,6 +13,7 @@ function verify(token) {
     .verifyIdToken({
       idToken: token,
       audience: CLIENT_ID,
+      ch,
     })
     .then((ticket) => ticket.getPayload());
 }
@@ -36,7 +37,10 @@ function getOrCreateUser(user) {
 
 function login(req, res) {
   verify(req.body.token)
-    .then((user) => getOrCreateUser(user))
+    .then((user) => {
+      console.log("User object before getOrCreateUser:", user);
+      return getOrCreateUser(user);
+    })
     .then((user) => {
       // persist user in the session
       req.session.user = user;
