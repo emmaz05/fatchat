@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 //import Card from "../modules/Card.js";
-//import { NewStory } from "../modules/NewPostInput.js";
-
+//import { Newpost } from "../modules/NewPostInput.js";
+import Card from "../modules/Card.js";
 import { get } from "../../utilities";
-
+import SinglePost from "../modules/SinglePost.js";
 const Feed = (props) => {
-  /*const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   //called when "Feed" component mounts
 
@@ -13,7 +13,7 @@ const Feed = (props) => {
     document.title = "Feed";
     get("/api/posts").then((postObjs) =>{
       let reversedPostObjs = postObjs.reverse();
-      setPosts(reversedStoryObjs);
+      setPosts(reversedPostObjs);
     });
   }, []);
 
@@ -23,18 +23,45 @@ const Feed = (props) => {
     setPosts([postObj].concat(posts));
   };
 
-  let postsLists = null;
+  let postsList = null;
   const hasPosts = posts.length !== 0;
   if (hasPosts) {
     postsList = posts.map((postObj) => (
+      <Card
+        key={`Card_${postObj._id}`}
+        _id={postObj._id}
+        creator_name={postObj.creator_name}
+        creator_id={postObj.creator_id}
+        userId={props.userId}
+        caption={postObj.caption}
+      />
 
+      
+     
     ));
   }
-  */
-  return (
+
+  const loadPosts = () => {
+    document.getElementById("duh").innerHTML=String(postsList[0]._id);
+    console.log(postsList)
+  }
   
-  <div>Feed</div>
-  );
+  
+  return (
+  <>
+  {/* <div>Feed</div>
+  <input type="text" id = "yo" readOnly 
+  onFocus={() => {
+    loadPosts();
+  }}
+  ></input>
+  <div id="duh">
+    :)
+  </div>*/}
+  
+  {postsList}
+  </>
+  ); 
 };
 
 export default Feed;
