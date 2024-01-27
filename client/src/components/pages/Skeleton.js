@@ -7,7 +7,7 @@ import { NewPost } from "../modules/NewPostInput";
 import "../../utilities.css";
 import "./Skeleton.css";
 
-//TODO: REPLACE WITH YOUR OWN CLIENT_ID
+//TODO: REPLACE WITH YOUR OWN CLIENT_I
 const GOOGLE_CLIENT_ID = "163008839093-p24qoqcjhot1em5llpo21ka3rka04dqi.apps.googleusercontent.com";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
@@ -41,6 +41,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       ) : (
         <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
       )}
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script>
 
       <header class="header">
         <a href="#" class="fatchat">
@@ -53,7 +54,6 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           <a href="./Profile.jsx">Profile</a>
         </nav>
       </header>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script>
       <Map />
       <NewPost />
     </GoogleOAuthProvider>
