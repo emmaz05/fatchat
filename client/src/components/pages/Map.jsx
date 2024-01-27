@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { GoogleMap, Marker, InfoWindow, useLoadScript } from "@react-google-maps/api";
 import "./Skeleton.css";
+import { postsList } from "./Feed.jsx" ;
 
 const Map = (props) => {
   const { isLoaded, loadError } = useLoadScript({
@@ -50,6 +51,10 @@ const Map = (props) => {
       </div>
     );
   };
+
+  const renderPostMarkers = () => {
+
+  }
 
   return (
     <div className="Map">

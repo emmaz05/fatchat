@@ -9,6 +9,7 @@ import "./NavBar.css"
  * @param {string} creator_name
  * @param {string} creator_id
  * @param {string} caption of the story
+ * @param {string} coord of the story
  */
 const SinglePost = (props) => {
   return (
@@ -16,7 +17,10 @@ const SinglePost = (props) => {
       <Link to={`/profile/${props.creator_id}`} className="u-link u-bold">
         {props.creator_name}
       </Link>
-      <p className="Card-storyContent">{props.caption}</p>
+      <p className="Card-storyContent">
+        {props.caption}
+        {props.coord}
+      </p>
     </div>
   );
 };

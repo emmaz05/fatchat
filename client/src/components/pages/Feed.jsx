@@ -59,6 +59,20 @@ const Feed = (props) => {
     :)
   </div>*/}
   
+  
+  {<div>
+  <header class="header">
+        <a href="#" class="fatchat">
+          FatChat
+        </a>
+        <nav class="navbar">
+          <a href="./">Home</a>
+          <a href="./feed">Circles</a>
+          <a href="./">Map</a>
+          <a href="./profile">Profile</a>
+        </nav>
+      </header>
+  </div>}
   {postsList}
   </>
   ); 
