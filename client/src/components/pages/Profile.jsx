@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import { get } from "/Users/ariannakumar/Desktop/sussy/client/src/utilities.js"; // Import the get utility function
 
-const Profile = () => {
+const Profile = (props) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -32,14 +32,7 @@ const Profile = () => {
 
       <main className="profile-main">
         <section className="user-info">
-          <img
-            src={
-              user.profilePictureUrl ||
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
-            }
-            alt="Profile"
-            style={{ width: "100px", height: "100px" }}
-          />
+          <img src={user.picture} alt="Profile" style={{ width: "100px", height: "100px" }} />
           <div className="user-details">
             <h1>{user.name}</h1>
             <p>@{user.username}</p>

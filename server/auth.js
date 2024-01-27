@@ -13,7 +13,6 @@ function verify(token) {
     .verifyIdToken({
       idToken: token,
       audience: CLIENT_ID,
-      ch,
     })
     .then((ticket) => ticket.getPayload());
 }
@@ -29,6 +28,7 @@ function getOrCreateUser(user) {
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
+      picture: user.picture,
     });
 
     return newUser.save();

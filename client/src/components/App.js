@@ -18,6 +18,8 @@ import Profile from "./pages/Profile.jsx";
 const App = () => {
   const [userId, setUserId] = useState(undefined);
 
+  const [profilePicture, setProfilePicture] = useState(undefined);
+
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
@@ -33,6 +35,7 @@ const App = () => {
     console.log(`Logged in as ${decodedCredential.name}`);
     post("/api/login", { token: userToken }).then((user) => {
       setUserId(user._id);
+      setProfilePicture(user.picture);
       post("/api/initsocket", { socketid: socket.id });
     });
   };
@@ -56,7 +59,7 @@ const App = () => {
         }
       />
 
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile" element={<Profile asdf={profilePicture} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
