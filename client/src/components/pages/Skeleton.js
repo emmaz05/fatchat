@@ -47,26 +47,15 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           FatChat
         </a>
         <nav class="navbar">
-          <a href="./">Home</a>
+          <a href="./feed">Home</a>
           <a href="./circles">Circles</a>
-          <a href="./map">Map</a>
+          <a href="./">Map</a>
           <a href="./profile">Profile</a>
         </nav>
       </header>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script>
       <Map />
-<<<<<<< HEAD
-      {mapsData && <Maps locations={mapsData} />}
-      <script
-        async
-        defer
-        src={
-          "https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places`"
-        }
-      ></script>
-=======
       <NewPost />
->>>>>>> 845ef7143b29fdb5e3ae1dad5dbc53a3c2501afd
     </GoogleOAuthProvider>
   );
 };
