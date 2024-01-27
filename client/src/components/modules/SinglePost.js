@@ -14,8 +14,8 @@ import "./NavBar.css"
 const SinglePost = (props) => {
   return (
     <div className="Card-story">
-      <Link to={`/profile/${props.creator_id}`} className="u-link u-bold">
-        {props.creator_name}
+      <Link to={`/profile/${props.creator_id}`} className="Card-storyUser u-link u-bold">
+        <p className="Card-storyUser">{props.creator_name}</p>
       </Link>
       <p className="Card-storyContent">
         {props.caption}
