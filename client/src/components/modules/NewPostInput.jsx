@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
-
 import "./NewPost.css";
 import { post } from "../../utilities";
 
@@ -8,7 +7,7 @@ const NewPostInput = (props) => {
   const [captionVal, setCaptionVal] = useState("");
   const [address, setAddress] = useState("");
 
-  // called whenever the user types in the new post input bo
+  // called whenever the user types in the new post input
   const handleCapChange = (event) => {
     setCaptionVal(event.target.value);
   };
@@ -42,29 +41,31 @@ const NewPostInput = (props) => {
         className="NewPostInput-caption"
       />
       <div className="search-bar">
-        <PlacesAutocomplete
-          bootstrapURLKeys={{
-            key: "AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM",
-            libraries: ["places"],
-          }}
-          value={address}
-          onChange={(value) => setAddress(value)}
-          onSelect={handleSelect}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <>
-              <input {...getInputProps({ placeholder: "Search places..." })} />
-              <div>
-                {loading && <div>Loading...</div>}
-                {suggestions.map((suggestion) => (
-                  <div key={suggestion.id} {...getSuggestionItemProps(suggestion)}>
-                    {suggestion.description}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </PlacesAutocomplete>
+        {
+          <PlacesAutocomplete
+            bootstrapURLKeys={{
+              key: "AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM",
+              libraries: ["places"],
+            }}
+            value={address}
+            onChange={(value) => setAddress(value)}
+            onSelect={handleSelect}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <>
+                <input {...getInputProps({ placeholder: "Search places..." })} />
+                <div>
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map((suggestion) => (
+                    <div key={suggestion.id} {...getSuggestionItemProps(suggestion)}>
+                      {suggestion.description}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </PlacesAutocomplete>
+        }
       </div>
       <button
         type="submit"

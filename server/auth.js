@@ -19,6 +19,8 @@ function verify(token) {
 
 // gets user from DB, or makes a new account if it doesn't exist yet
 function getOrCreateUser(user) {
+  console.log("User Object in getOrCreateUser:", user);
+
   // the "sub" field means "subject", which is a unique identifier for each user
   return User.findOne({ googleid: user.sub }).then((existingUser) => {
     if (existingUser) return existingUser;
@@ -26,6 +28,7 @@ function getOrCreateUser(user) {
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
+      picture: user.picture,
     });
 
     return newUser.save();
@@ -34,7 +37,10 @@ function getOrCreateUser(user) {
 
 function login(req, res) {
   verify(req.body.token)
-    .then((user) => getOrCreateUser(user))
+    .then((user) => {
+      console.log("User object before getOrCreateUser:", user);
+      return getOrCreateUser(user);
+    })
     .then((user) => {
       // persist user in the session
       req.session.user = user;

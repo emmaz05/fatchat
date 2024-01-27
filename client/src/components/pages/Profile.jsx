@@ -1,50 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
-
-import "../../utilities.css";
-import "./Skeleton.css";
+import "./Profile.css";
+import { get } from "/Users/ariannakumar/Desktop/sussy/client/src/utilities.js"; // Import the get utility function
 
 const Profile = (props) => {
-  //const [catHappiness, setCatHappiness] = useState(0);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    document.title = "Profile Page";
-    get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
+    // Fetch user data from the server
+    get("/api/whoami").then((userData) => {
+      setUser(userData);
+    });
   }, []);
 
-  
-
   if (!user) {
-    return <div> Loading! </div>;
+    return <p>Loading...</p>;
   }
+
   return (
-    <>
-      <div
-        className="Profile-avatarContainer"
-        
-      >
-        <div className="Profile-avatar" />
-      </div>
-      <h1 className="Profile-name u-textCenter">{user.name}</h1>
-      <hr className="Profile-linejj" />
-      <div className="u-flex">
-        <div className="Profile-subContainer u-textCenter">
-          <h4 className="Profile-subTitle">About Me</h4>
-          <div id="profile-description">
-            I am really allergic to cats i don't know why i have a catbook
+    <div>
+      <header className="header">
+        <a href="#" className="fatchat">
+          FatChat
+        </a>
+        <nav className="navbar">
+          <a href="./feed">Home</a>
+          <a href="./circles">Circles</a>
+          <a href="./">Map</a>
+          <a href="./profile">Profile</a>
+        </nav>
+      </header>
+
+      <main className="profile-main">
+        <section className="user-info">
+          <img src={user.picture} alt="Profile" style={{ width: "100px", height: "100px" }} />
+          <div className="user-details">
+            <h1>{user.name}</h1>
+            <p>@{user.username}</p>
+            {/* Add other user information fields as needed */}
+            <p>{user.bio}</p>
           </div>
-        </div>
-        <div className="Profile-subContainer u-textCenter">
-          <h4 className="Profile-subTitle">Cat Happiness</h4>
-          
-        </div>
-        <div className="Profile-subContainer u-textCenter">
-          <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
-          
-        </div>
-      </div>
-    </>
+        </section>
+      </main>
+    </div>
   );
 };
 
