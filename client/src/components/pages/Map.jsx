@@ -19,8 +19,31 @@ const Map = (props) => {
 
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
+<<<<<<< Updated upstream
   const [posts, setPosts] = useState([]); // const onMapClick = (event) => { //   const newMarker = { //     position: //       lat: event.latLng.lat(), //       lng: event.latLng.lng(), //     }, //     icon: { //       url: "https://cdn.iconscout.com/icon/free/png-256/free-ice-cream-1769297-1505070.png", //       scaledSize: new window.google.maps.Size(50, 50), //     }, //   }; //   setMarkers((prevMarkers) => [...prevMarkers, newMarker]); // };
 
+||||||| Stash base
+  const [posts, setPosts] = useState([]);
+
+  // const onMapClick = (event) => {
+  //   const newMarker = {
+  //     position:
+  //       lat: event.latLng.lat(),
+  //       lng: event.latLng.lng(),
+  //     },
+  //     icon: {
+  //       url: "https://cdn.iconscout.com/icon/free/png-256/free-ice-cream-1769297-1505070.png",
+  //       scaledSize: new window.google.maps.Size(50, 50),
+  //     },
+  //   };
+
+  //   setMarkers((prevMarkers) => [...prevMarkers, newMarker]);
+  // };
+
+=======
+  const [posts, setPosts] = useState([]);
+
+>>>>>>> Stashed changes
   const handleMarkerClick = (marker) => {
     setSelectedMarker(marker);
   };
