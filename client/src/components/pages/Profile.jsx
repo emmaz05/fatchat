@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Profile.css";
-import { get } from "/Users/ariannakumar/Desktop/sussy/client/src/utilities.js"; // Import the get utility function
+import { get } from "../../../src/utilities"; // Import the get utility function
 
 const Profile = (props) => {
   const [user, setUser] = useState(null);
@@ -23,8 +23,8 @@ const Profile = (props) => {
           FatChat
         </a>
         <nav className="navbar">
-          <a href="./feed">Home</a>
-          <a href="./circles">Circles</a>
+          <a href="./">Home</a>
+          <a href="./feed">Circles</a>
           <a href="./">Map</a>
           <a href="./profile">Profile</a>
         </nav>
@@ -35,7 +35,6 @@ const Profile = (props) => {
           <img src={user.picture} alt="Profile" style={{ width: "100px", height: "100px" }} />
           <div className="user-details">
             <h1>{user.name}</h1>
-            <p>@{user.username}</p>
             {/* Add other user information fields as needed */}
             <p>{user.bio}</p>
           </div>
