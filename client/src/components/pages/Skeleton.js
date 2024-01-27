@@ -48,10 +48,10 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           FatChat
         </a>
         <nav class="navbar">
-          <a href="">Home</a>
-          <a href="">Circles</a>
-          <a href="./Map.jsx">Map</a>
-          <a href="./Profile.jsx">Profile</a>
+          <a href="./feed">Home</a>
+          <a href="./circles">Circles</a>
+          <a href="./">Map</a>
+          <a href="./profile">Profile</a>
         </nav>
       </header>
       <Map />

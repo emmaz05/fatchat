@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
-//helk
 import "./NewPost.css";
 import { post } from "../../utilities";
 
