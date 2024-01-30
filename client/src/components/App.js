@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-
+//import { Router } from "@reach/router";
 import jwt_decode from "jwt-decode";
+import Navbar from "./modules/NavBar.jsx";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 
@@ -11,7 +12,10 @@ import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
 import mainPage from "../components/mainPage/mainPage.js";
+
 import Profile from "./pages/Profile.jsx";
+import Feed from "./pages/Feed.jsx";
+
 /**
  * Define the "App" component
  */
@@ -46,6 +50,8 @@ const App = () => {
   };
 
   return (
+   
+   //<Navbar />
     <Routes>
       <Route
         path="/"
@@ -58,10 +64,21 @@ const App = () => {
           />
         }
       />
+      <Route path="/profile/:userId" element={<Profile />} />
+
+      <Route path="/map" element={<Map />} />
+      <Route path="/feed" element={<Feed />} />
+      {/* <Route path="/main" element={<mainPage />} /> */}
 
       <Route path="/profile" element={<Profile asdf={profilePicture} />} />
       <Route path="*" element={<NotFound />} />
-    </Routes>
+    </Routes>/**//*
+    <Router>
+      <Skeleton path = "/" handleLogin={handleLogin} handleLogout={handleLogout} />
+      <Profile path="/profile/" />
+      <NotFound default />
+    </Router>*/
+    
   );
 };
 

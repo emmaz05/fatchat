@@ -4,6 +4,8 @@ import axios from "axios";
 import Map from "./Map";
 import { NewPost } from "../modules/NewPostInput";
 
+import Profile from "./Profile";
+import Feed from "./Feed";
 import "../../utilities.css";
 import "./Skeleton.css";
 
@@ -48,8 +50,8 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           FatChat
         </a>
         <nav class="navbar">
-          <a href="./feed">Home</a>
-          <a href="./circles">Circles</a>
+          <a href="./">Home</a>
+          <a href="./feed">Circles</a>
           <a href="./">Map</a>
           <a href="./profile">Profile</a>
         </nav>

@@ -44,6 +44,7 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
+//Post commands
 router.get("/posts", (req, res) => {
   Post.find({}).then((posts) => res.send(posts));
 });
@@ -66,6 +67,7 @@ router.post("/post", auth.ensureLoggedIn, (req, res) => {
 
   newPost.save().then((post) => res.send(post));
 });
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
