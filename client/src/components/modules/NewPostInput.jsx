@@ -42,7 +42,6 @@ const NewPostInput = (props) => {
         className="NewPostInput-caption"
       />
       <div className="search-bar">
-<<<<<<< Updated upstream
         {
           <PlacesAutocomplete
             bootstrapURLKeys={{
@@ -68,55 +67,6 @@ const NewPostInput = (props) => {
             )}
           </PlacesAutocomplete>
         }
-||||||| Stash base
-        <PlacesAutocomplete
-          bootstrapURLKeys={{
-            key: "AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM",
-            libraries: ["places"],
-          }}
-          value={address}
-          onChange={(value) => setAddress(value)}
-          onSelect={handleSelect}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <>
-              <input {...getInputProps({ placeholder: "Search places..." })} />
-              <div>
-                {loading && <div>Loading...</div>}
-                {suggestions.map((suggestion) => (
-                  <div key={suggestion.id} {...getSuggestionItemProps(suggestion)}>
-                    {suggestion.description}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </PlacesAutocomplete>
-=======
-        <PlacesAutocomplete
-          // bootstrapURLKeys={{
-          //   key: "AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM",
-          //   libraries: ["places"],
-          // }}
-          value={address}
-          onChange={(value) => setAddress(value)}
-          onSelect={handleSelect}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <>
-              <input {...getInputProps({ placeholder: "Search places..." })} />
-              <div>
-                {loading && <div>Loading...</div>}
-                {suggestions.map((suggestion) => (
-                  <div key={suggestion.id} {...getSuggestionItemProps(suggestion)}>
-                    {suggestion.description}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </PlacesAutocomplete>
->>>>>>> Stashed changes
       </div>
       <button
         type="submit"

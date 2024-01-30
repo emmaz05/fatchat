@@ -54,12 +54,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           <a href="./Profile.jsx">Profile</a>
         </nav>
       </header>
-<<<<<<< Updated upstream
-||||||| Stash base
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script>
-=======
       {/* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script> */}
->>>>>>> Stashed changes
       <Map />
       <NewPost />
     </GoogleOAuthProvider>
