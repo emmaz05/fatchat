@@ -47,7 +47,7 @@
 }
 
 /* CARD/POST */
-.Card-container {
+/* .Card-container {
   border: var(--darkgrey) 1px solid;
   border-radius: var(--xs);
   margin-top: var(--m);
@@ -82,7 +82,7 @@
 
 .Card-commentBody {
   margin: 0 0 var(--s);
-}
+} */
   /* CARD/POST */
   .Card-container {
     border: var(--darkgrey) 1px solid;

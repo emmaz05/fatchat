@@ -18,9 +18,9 @@ const SinglePost = (props) => {
   const { lat, lng } = props.coord || { lat: 0, lng: 0 };
 //   const [user, setUser] = useState(null);
   const [userImg, setUserImg] = useState("https://cdn.iconscout.com/icon/free/png-256/free-ice-cream-1769297-1505070.png");
-  if (props.user_pic){
-    setUserImg(props.user_pic);
-  }
+//   if (props.user_pic){
+//     setUserImg(props.user_pic);
+//   }
 
 //   useEffect(() => {
 //     // Fetch user data for the creator of the post
