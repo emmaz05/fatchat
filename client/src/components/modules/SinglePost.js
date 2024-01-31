@@ -21,13 +21,15 @@ const SinglePost = (props) => {
 
   return (
     <div className="Card-story">
-      <img src={userImg} alt="Profile" style={{ width: "30px", height: "30px" }} />
+      {/* <img src={userImg} alt="Profile" style={{ width: "30px", height: "30px" }} /> */}
       <Link to={`/profile/${props.creator_id}`} className="Card-storyUser u-link u-bold">
-        <p className="Card-storyUser">{props.creator_name}</p>
+        <p className="Card-storyUser">{props.creator_name}<div className="Card-atSymbol">@
+
+        <ReverseGeo props = {props} lat={lat} lng={lng} /></div></p>
       </Link>
       <p className="Card-storyContent">{props.caption}</p>
       <p>
-        <ReverseGeo props = {props} lat={lat} lng={lng} />
+        
       </p>
     </div>
   );

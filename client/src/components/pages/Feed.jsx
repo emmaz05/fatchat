@@ -78,6 +78,7 @@ const Feed = (props) => {
           <a href="./profile">Profile</a>
         </nav>
       </header>
+      
   </div>}
   {postsList}
   </>

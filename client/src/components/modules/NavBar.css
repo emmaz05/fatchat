@@ -49,7 +49,7 @@
     border: var(--darkgrey) 1px solid;
     border-radius: var(--xs);
     margin-top: var(--m);
-    background-color: #ffc0cd;
+    background-color: #cbdff3;
     
   }
   
@@ -65,13 +65,28 @@
   .Card-storyUser {
     font-size: 20px;
     font-weight: 600;
-    color:  #ffffff;
+    color:  #ffe5ea;
+    font-family: "Lexend", sans-serif;
+
+  }
+
+  .Card-atSymbol {
+    font-size: 15px;
+    font-weight: 600;
+    color:  #ff748c;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: "Lexend", sans-serif;
+
   }
   
   .Card-storyContent {
-    font-size: 40px;
+    font-size: 20px;
     margin: var(--s) 0 0;
     color: #ffffff;
+    font-family: "Lexend", sans-serif;
+
   }
   
   .Card-commentSection {

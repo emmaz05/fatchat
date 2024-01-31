@@ -70,7 +70,7 @@ const App = () => {
       <Route path="/feed" element={<Feed />} />
       {/* <Route path="/main" element={<mainPage />} /> */}
 
-      <Route path="/profile" element={<Profile asdf={profilePicture} />} />
+      <Route path="/profile/:userId" element={<Profile asdf={profilePicture} />} />
       <Route path="*" element={<NotFound />} />
     </Routes> /**/ /*
     <Router>
