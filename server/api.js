@@ -40,7 +40,7 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
-// |------------------------------|
+// /|------------------------------
 // | write your API methods below!|
 // |------------------------------|
 
@@ -55,19 +55,11 @@ router.post("/post", auth.ensureLoggedIn, (req, res) => {
     creator_id: req.user._id,
     caption: req.body.caption,
     coord: req.body.coord,
-    // lat: req.body.lat,
-    // lng: req.body.lng,
-
-    // creator_id: req.user._id,
-    // creator_name: req.user.name,
-    // content: req.body.content,
   });
-
-  console.log(newPost);
-
   newPost.save().then((post) => res.send(post));
-});
 
+  socketManager.getIo().emit("post", newPost);
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

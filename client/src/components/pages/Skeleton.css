@@ -1,8 +1,9 @@
 /* Fill me in :) */
 .Map {
   position: relative;
-  height: 85vh;
+  height: 70vh;
   width: 100vw;
+  margin-bottom: 20px;
 }
 
 .map-container {

@@ -14,7 +14,6 @@ const NewPostInput = (props) => {
 
   const handleCapSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const results = await geocodeByAddress(address);
       const latLng = await getLatLng(results[0]);
@@ -35,10 +34,10 @@ const NewPostInput = (props) => {
     <div className="u-flex">
       <input
         type="text"
-        placeholder={"caption"}
+        placeholder={"Caption your Chat..."}
         value={captionVal}
         onChange={handleCapChange}
-        className="NewPostInput-caption"
+        className="NewPostInput-input"
       />
       <div className="search-bar">
         {
@@ -53,7 +52,7 @@ const NewPostInput = (props) => {
           >
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <>
-                <input {...getInputProps({ placeholder: "Search places..." })} />
+                <input {...getInputProps({ placeholder: "Add Location..." })} />
                 <div>
                   {loading && <div>Loading...</div>}
                   {suggestions.map((suggestion) => (
@@ -70,7 +69,7 @@ const NewPostInput = (props) => {
       <button
         type="submit"
         className="NewPostInput-button u-pointer"
-        value="Submit"
+        value="Submit!"
         onClick={handleCapSubmit}
       >
         Submit
@@ -83,7 +82,7 @@ const NewPost = (props) => {
   const addPost = (captionVal, latLng) => {
     const body = { caption: captionVal, coord: latLng };
     post("/api/post", body).then((post) => {
-      props.addNewPost(post);
+      // props.addNewPost(post);
     });
   };
   return <NewPostInput onSubmit={addPost} />;
