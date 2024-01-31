@@ -56,6 +56,7 @@ router.post("/post", auth.ensureLoggedIn, (req, res) => {
     caption: req.body.caption,
     coord: req.body.coord,
     loc_name: req.body.loc_name,
+    user_pic: req.body.user_pic,
     // lat: req.body.lat,
     // lng: req.body.lng,
 

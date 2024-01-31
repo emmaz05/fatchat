@@ -14,6 +14,8 @@ import "./NavBar.css";
  * @param {string} creator_id
  * @param {string} content of the story
  * @param {object} coord
+ * @param {string} placeName
+ * @param {string} user_pic
  */
 const Card = (props) => {
   //const [comments, setComments] = useState([]);
@@ -39,6 +41,7 @@ const Card = (props) => {
         // lng={props.coord.lng}
         coord={props.coord}
         loc_name={props.loc_name}
+        user_pic = {props.user_pic}
 
       />
      

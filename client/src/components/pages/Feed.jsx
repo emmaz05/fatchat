@@ -37,8 +37,7 @@ const Feed = (props) => {
         caption={postObj.caption}
         coord={postObj.coord}
         loc_name={postObj.loc_name}
-        // lat={postObj.coord.lat}
-        // lng={postObj.coord.lng}
+        user_pic={postObj.user_pic}
       />
       
 
