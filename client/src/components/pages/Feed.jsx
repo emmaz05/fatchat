@@ -7,6 +7,7 @@ import SinglePost from "../modules/SinglePost.js";
 const Feed = (props) => {
   const [posts, setPosts] = useState([]);
 
+
   //called when "Feed" component mounts
 
   useEffect(() => {
@@ -34,7 +35,11 @@ const Feed = (props) => {
         creator_id={postObj.creator_id}
         userId={props.userId}
         caption={postObj.caption}
+        coord={postObj.coord}
+        // lat={postObj.coord.lat}
+        // lng={postObj.coord.lng}
       />
+      
 
       
      

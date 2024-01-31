@@ -6,6 +6,7 @@ import { post } from "../../utilities";
 const NewPostInput = (props) => {
   const [captionVal, setCaptionVal] = useState("");
   const [address, setAddress] = useState("");
+  const [placeName, setPlaceName] = useState("")
 
   // called whenever the user types in the new post input
   const handleCapChange = (event) => {
@@ -18,9 +19,11 @@ const NewPostInput = (props) => {
       const results = await geocodeByAddress(address);
       const latLng = await getLatLng(results[0]);
       console.log(latLng);
-      props.onSubmit(captionVal, latLng);
+      props.onSubmit(captionVal, latLng, placeName);
       setCaptionVal("");
       setAddress("");
+      setPlaceName("");
+      // console.log("hup" + results);
     } catch (error) {
       console.error("Error fetching geocode:", error);
     }
@@ -28,6 +31,7 @@ const NewPostInput = (props) => {
 
   const handleSelect = async (value) => {
     setAddress(value);
+    setPlaceName(value);
   };
 
   return (
@@ -79,8 +83,8 @@ const NewPostInput = (props) => {
 };
 
 const NewPost = (props) => {
-  const addPost = (captionVal, latLng) => {
-    const body = { caption: captionVal, coord: latLng };
+  const addPost = (captionVal, latLng, placeName) => {
+    const body = { caption: captionVal, coord: latLng, loc_name: placeName }; // Use the placeName
     post("/api/post", body).then((post) => {
       // props.addNewPost(post);
     });

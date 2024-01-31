@@ -4,6 +4,7 @@ import { get } from "../../../src/utilities"; // Import the get utility function
 
 const Profile = (props) => {
   const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     // Fetch user data from the server
@@ -15,7 +16,15 @@ const Profile = (props) => {
   if (!user) {
     return <p>Loading...</p>;
   }
-
+  // else{
+  //   const getUserPosts = (user) => {
+  //     const userPosts = Object.keys(posts).reduce(function (userPosts) {
+  //       if (posts.creator_id === user.id) userPosts[key] = dict[key];
+  //       return userPosts;
+  //   }, {});
+  //   }
+  // }
+  
   return (
     <div>
       <header className="header">

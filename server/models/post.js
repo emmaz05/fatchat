@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema({
   creator_id: String,
   coord: Object,
   caption: String,
+  loc_name: String,
   // lat: Number,
   // lng: Number,
 

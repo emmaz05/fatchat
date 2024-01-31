@@ -55,6 +55,13 @@ router.post("/post", auth.ensureLoggedIn, (req, res) => {
     creator_id: req.user._id,
     caption: req.body.caption,
     coord: req.body.coord,
+    loc_name: req.body.loc_name,
+    // lat: req.body.lat,
+    // lng: req.body.lng,
+
+    // creator_id: req.user._id,
+    // creator_name: req.user.name,
+    // content: req.body.content,
   });
   newPost.save().then((post) => res.send(post));
 
