@@ -1,0 +1,13 @@
+/* fillmein : ) */
+.Map {
+  position: relative;
+  height: 76vh;
+  width: 100vw;
+  margin-bottom: 20px;
+  margin-top: -19px;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+}

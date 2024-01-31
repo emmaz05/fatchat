@@ -79,8 +79,9 @@ const NewPostInput = (props) => {
 };
 
 const NewPost = (props) => {
+  const { userId } = props;
   const addPost = (captionVal, latLng) => {
-    const body = { caption: captionVal, coord: latLng };
+    const body = { caption: captionVal, coord: latLng, creatorid: userId };
     post("/api/post", body).then((post) => {
       // props.addNewPost(post);
     });

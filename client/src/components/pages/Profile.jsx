@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import { get } from "../../../src/utilities"; // Import the get utility function
+import NavBar from "../modules/NavBar";
 
 const Profile = (props) => {
   const [user, setUser] = useState(null);
@@ -18,17 +19,7 @@ const Profile = (props) => {
 
   return (
     <div>
-      <header className="header">
-        <a href="#" className="fatchat">
-          FatChat
-        </a>
-        <nav className="navbar">
-          <a href="./">Home</a>
-          <a href="./feed">Circles</a>
-          <a href="./">Map</a>
-          <a href="./profile">Profile</a>
-        </nav>
-      </header>
+      <NavBar />
 
       <main className="profile-main">
         <section className="user-info">
