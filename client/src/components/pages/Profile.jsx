@@ -1,21 +1,55 @@
 import React, { useState, useEffect } from "react";
 import "./Profile.css";
-import { get } from "../../../src/utilities"; // Import the get utility function
 import NavBar from "../modules/NavBar";
+import { get, put } from "../../../src/utilities"; // Import the get and put utility functions
+import Card from "../modules/Card.js";
 
 const Profile = (props) => {
   const [user, setUser] = useState(null);
+  const [editing, setEditing] = useState(false);
+  const [bio, setBio] = useState("");
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
     // Fetch user data from the server
     get("/api/whoami").then((userData) => {
       setUser(userData);
+      setBio(userData.bio || ""); // Set bio state with user's current bio
+    });
+
+    // Fetch user's posts from the server
+    get("/api/posts").then((postObjs) => {
+      setUserPosts(postObjs);
     });
   }, []);
+
+  const handleBioChange = (event) => {
+    setBio(event.target.value);
+  };
+
+  const handleEditClick = () => {
+    setEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    // Save the updated bio to the server
+    put("/api/updateBio", { user_id: user._id, bio }).then((response) => {
+      if (response.success) {
+        // Once saved, update the user object with the new bio.
+        setUser({ ...user, bio });
+        // Toggle editing off
+        setEditing(false);
+      } else {
+        console.error("Bio update failed:", response.message);
+      }
+    });
+  };
 
   if (!user) {
     return <p>Loading...</p>;
   }
+
+  const filteredUserPosts = userPosts.filter((postObj) => postObj.creator_id === user._id);
 
   return (
     <div>
@@ -26,9 +60,32 @@ const Profile = (props) => {
           <img src={user.picture} alt="Profile" style={{ width: "100px", height: "100px" }} />
           <div className="user-details">
             <h1>{user.name}</h1>
-            {/* Add other user information fields as needed */}
-            <p>{user.bio}</p>
+            {editing ? (
+              <>
+                <textarea value={bio} onChange={handleBioChange} />
+                <button onClick={handleSaveClick}>Save Bio</button>
+              </>
+            ) : (
+              <>
+                <p>{user.bio}</p>
+                <button onClick={handleEditClick}>Edit Bio</button>
+              </>
+            )}
           </div>
+        </section>
+
+        <section className="user-posts">
+          <h2>Your Chats</h2>
+          {filteredUserPosts.reverse().map((postObj) => (
+            <Card
+              key={`Card_${postObj._id}`}
+              _id={postObj._id}
+              creator_name={postObj.creator_name}
+              creator_id={postObj.creator_id}
+              userId={props.userId}
+              caption={postObj.caption}
+            />
+          ))}
         </section>
       </main>
     </div>
