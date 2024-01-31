@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from '@react-google-maps/api';
 
 
-const ReverseGeo = ({ lat, lng }) => {
+const ReverseGeo = ({ props, lat, lng }) => {
   const [locationName, setLocationName] = useState('');
   const [locId, setLocId] = useState('');
 
@@ -22,18 +22,18 @@ const ReverseGeo = ({ lat, lng }) => {
               const premiseName = results[0].address_components.find(
                 component => component.types.includes('premise')
               );
-              const premiseColloquialName = premiseName ? premiseName.types : '';
+              const premiseColloquialName = premiseName ? premiseName.long_name : '';
   
               // Accessing the point_of_interest name if available
               const poiName = results[0].address_components.find(
                 component => component.types.includes('point_of_interest')
               );
-              const poiColloquialName = poiName ? poiName.types: '';
+              const poiColloquialName = poiName ? poiName.long_name : '';
 
               
   
               // Setting the location name
-              setLocationName(premiseColloquialName || poiColloquialName  || formattedAddress.types || "nothing:(");
+              setLocationName(props.loc_name || premiseColloquialName || poiColloquialName  || formattedAddress || "");
               console.log(poiColloquialName);
 
               const locid = results[0].place_id;

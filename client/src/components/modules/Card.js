@@ -38,6 +38,7 @@ const Card = (props) => {
         // lat={props.coord.lat}
         // lng={props.coord.lng}
         coord={props.coord}
+        loc_name={props.loc_name}
 
       />
      
