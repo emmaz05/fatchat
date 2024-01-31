@@ -30,21 +30,9 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
   }, []); // Empty dependency array ensures the effect runs once when the component mounts
 
   return (
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      {userId ? (
-        <button
-          onClick={() => {
-            googleLogout();
-            handleLogout();
-          }}
-        >
-          Logout
-        </button>
-      ) : (
-        <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
-      )}
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script>
-
+    <GoogleOAuthProvider
+      clientId={"163008839093-p24qoqcjhot1em5llpo21ka3rka04dqi.apps.googleusercontent.com"}
+    >
       <header className="header">
         <a href="#" className="fatchat">
           FatChat
@@ -54,6 +42,18 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           <a href="./feed">Circles</a>
           <a href="./">Map</a>
           <a href="./profile">Profile</a>
+          {userId ? (
+            <button
+              onClick={() => {
+                googleLogout();
+                handleLogout();
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
+          )}
         </nav>
       </header>
       <Map />

@@ -84,7 +84,7 @@ const Profile = (props) => {
         </section>
 
         <section className="user-posts">
-          <h2>Your Posts</h2>
+          <h2>Your Chats</h2>
           {filteredUserPosts.reverse().map((postObj) => (
             <Card
               key={`Card_${postObj._id}`}
