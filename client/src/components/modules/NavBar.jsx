@@ -4,7 +4,7 @@ import "./NavBar.css";
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-const NavBar = (props) => {
+const NavBar = () => {
   return (
     <header class="bar">
       <div class="fatchat">

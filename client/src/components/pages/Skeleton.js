@@ -28,20 +28,28 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
 
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      {userId ? (
-        <button
-          onClick={() => {
-            googleLogout();
-            handleLogout();
-          }}
-        >
-          Logout
-        </button>
-      ) : (
-        <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
-      )}
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script>
-      <NavBar />
+      <header class="bar">
+        <div class="fatchat">
+          <a href="#">FatChat</a>
+        </div>
+        <nav class="navbar">
+          <a href="./">Home</a>
+          <a href="./feed">Feed</a>
+          <a href="./profile">Profile</a>
+          {userId ? (
+            <button
+              onClick={() => {
+                googleLogout();
+                handleLogout();
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
+          )}
+        </nav>
+      </header>
       <Map userId={userId} />
       <NewPost userId={userId} />
     </GoogleOAuthProvider>
