@@ -6,7 +6,7 @@ import "./NavBar.css";
  */
 const NavBar = (props) => {
   return (
-    <header class="header">
+    <header class="bar">
       <div class="fatchat">
         <a href="#">FatChat</a>
       </div>
