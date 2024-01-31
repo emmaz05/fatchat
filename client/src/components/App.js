@@ -73,7 +73,7 @@ const App = () => {
 
       <Route
         path="/profile"
-        element={<Profile asdf={profilePicture} />}
+        element={<Profile userId={userId} asdf={profilePicture} />}
         handleLogin={handleLogin}
         handleLogout={handleLogout}
       />

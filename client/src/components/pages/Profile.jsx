@@ -9,6 +9,7 @@ const Profile = (props) => {
   const [editing, setEditing] = useState(false);
   const [bio, setBio] = useState("");
   const [userPosts, setUserPosts] = useState([]);
+  const { userId } = props;
 
   useEffect(() => {
     // Fetch user data from the server
@@ -49,7 +50,9 @@ const Profile = (props) => {
     return <p>Loading...</p>;
   }
 
-  const filteredUserPosts = userPosts.filter((postObj) => postObj.creator_id === user._id);
+  console.log("postObj:", userPosts);
+  console.log("userid: ", userId);
+  const filteredUserPosts = userPosts.filter((postObj) => postObj.creatorid === userId);
 
   return (
     <div>
