@@ -44,6 +44,7 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
+//Post commands
 router.get("/posts", (req, res) => {
   Post.find({}).then((posts) => res.send(posts));
 });
@@ -55,10 +56,9 @@ router.post("/post", auth.ensureLoggedIn, (req, res) => {
     caption: req.body.caption,
     coord: req.body.coord,
   });
-
-  console.log(newPost);
-
   newPost.save().then((post) => res.send(post));
+
+  socketManager.getIo().emit("post", newPost);
 });
 
 // anything else falls to this "not found" case

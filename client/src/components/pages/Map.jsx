@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import {
   GoogleMap,
   Marker,
@@ -7,6 +7,9 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 import "./Skeleton.css";
+import MapPost from "../modules/MapPost";
+import { get } from "../../utilities";
+import { socket } from "../../client-socket";
 
 const Map = (props) => {
   const { isLoaded, loadError } = useJsApiLoader({
@@ -17,32 +20,40 @@ const Map = (props) => {
 
   const center = useMemo(() => ({ lat: 42.3601, lng: -71.0942 }), []);
 
-  const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [posts, setPosts] = useState([]);
 
-  const handleMarkerClick = (marker) => {
-    setSelectedMarker(marker);
-  };
+  useEffect(() => {
+    get("/api/posts").then((postObjs) => {
+      setPosts(postObjs);
+    });
+    const getPost = () => {
+      get("/api/posts").then((postObjs) => {
+        setPosts(postObjs);
+      });
+    };
+    socket.on("post", getPost);
+    return () => {
+      socket.off("post", getPost);
+    };
+  }, []);
 
-  const handleInfoWindowClose = () => {
-    setSelectedMarker(null);
-  };
-
-  const addNewPost = (post) => {
-    setPosts([post].concat(posts));
-  };
-
-  const renderInfoWindowContent = () => {
-    // Customize the content of the InfoWindow here
-    return (
-      <div>
-                <h3>Custom InfoWindow</h3>
-                <p>This is a custom InfoWindow content.</p>
-              
-      </div>
-    );
-  };
+  let postsList = null;
+  const hasPosts = posts.length !== 0;
+  if (hasPosts) {
+    postsList = posts.map((postObj) => (
+      <MapPost
+        key={`Marker_${postObj._id}`}
+        _id={postObj._id}
+        creator_name={postObj.creator_name}
+        creator_id={postObj.creator_id}
+        userId={postObj.userId}
+        caption={postObj.caption}
+        coord={postObj.coord}
+      />
+    ));
+    console.log("postsList: ", { postsList });
+  }
 
   return (
     <div className="Map">
@@ -54,39 +65,27 @@ const Map = (props) => {
       ) : (
         <>
                     
-          {/* <LoadScript
-            googleMapsApiKey="AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM"
-            libraries={["places"]}
-          > */}
-                    
           <GoogleMap
             mapContainerClassName="map-container"
             center={selectedMarker || center}
             zoom={15}
           >
-                        
-            {markers.map((marker, index) => (
-              <Marker
-                key={index}
-                position={marker.position}
-                onClick={() => handleMarkerClick(marker)}
-                icon={marker.icon}
+            {/* Render MapPost components as children */}
+            {posts.map((postObj) => (
+              <MapPost
+                key={`Marker_${postObj._id}`}
+                creator_name={postObj.creator_name}
+                caption={postObj.caption}
+                coord={postObj.coord}
               />
             ))}
-                        
-            {selectedMarker && (
-              <InfoWindow position={selectedMarker.position} onCloseClick={handleInfoWindowClose}>
-                                {renderInfoWindowContent()}
-                              
-              </InfoWindow>
-            )}
                       
           </GoogleMap>
                     {/* </LoadScript> */}
                   
         </>
       )}
-          
+      {postsList}
     </div>
   );
 };
