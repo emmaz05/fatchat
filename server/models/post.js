@@ -5,6 +5,14 @@ const PostSchema = new mongoose.Schema({
   creatorid: String,
   coord: Object,
   caption: String,
+  loc_name: String,
+  user_pic: String,
+  // lat: Number,
+  // lng: Number,
+
+  // creator_id: String,
+  // creator_name: String,
+  // content: String,
 });
 
 module.exports = mongoose.model("post", PostSchema);
