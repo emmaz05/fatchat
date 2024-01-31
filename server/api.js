@@ -52,7 +52,7 @@ router.get("/posts", (req, res) => {
 router.post("/post", auth.ensureLoggedIn, (req, res) => {
   const newPost = new Post({
     creator_name: req.user.name,
-    creator_id: req.user._id,
+    creatorid: req.body.creatorid,
     caption: req.body.caption,
     coord: req.body.coord,
   });

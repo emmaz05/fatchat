@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./NavBar.css"
+import "./NavBar.css";
 /**
  * Story is a component that renders creator and content of a story
  *

@@ -13,7 +13,7 @@
   border-radius: var(--xs) 0 0 var(--xs);
   transition: box-shadow 0.1s;
   width: 40vw;
-  height: 60px;
+  height: 7vh;
 }
 
 .NewPostInput-input:focus-within {
@@ -70,5 +70,5 @@
 }
 
 .search-bar li:hover {
-  background-color: #e0e0e0;
+  background-color: pink;
 }

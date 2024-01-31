@@ -15,6 +15,7 @@ import { Marker, InfoWindow } from "@react-google-maps/api"; // Assuming you hav
  */
 const MapPost = (props) => {
   const [isInfoWindowOpen, setIsInfoWindowOpen] = useState(false);
+  const [isDeleteVisible, setIsDeleteVisible] = useState(false);
 
   const handleMarkerClick = () => {
     setIsInfoWindowOpen(!isInfoWindowOpen);
@@ -31,6 +32,19 @@ const MapPost = (props) => {
     boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
   };
 
+  const buttonStyle = {
+    background: "ffc0cb",
+    color: "white",
+  };
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation(); // Prevent marker click when the delete button is clicked
+    // Call a delete function passed as a prop
+    if (props.onDelete) {
+      props.onDelete(props._id);
+    }
+  };
+
   return (
     <div className="Marker-Post">
       <Marker
@@ -44,6 +58,9 @@ const MapPost = (props) => {
             <div style={infoWindowStyles}>
               <h3>{props.creator_name}'s Chat</h3>
               <p>{props.caption}</p>
+              <div style={buttonStyle}>
+                {props.isCurrentUser && <button onClick={handleDeleteClick}>Delete</button>}
+              </div>
             </div>
           </InfoWindow>
         )}
