@@ -50,8 +50,7 @@ const App = () => {
   };
 
   return (
-   
-   //<Navbar />
+    //<Navbar />
     <Routes>
       <Route
         path="/"
@@ -72,13 +71,12 @@ const App = () => {
 
       <Route path="/profile" element={<Profile asdf={profilePicture} />} />
       <Route path="*" element={<NotFound />} />
-    </Routes>/**//*
+    </Routes> /**/ /*
     <Router>
       <Skeleton path = "/" handleLogin={handleLogin} handleLogout={handleLogout} />
       <Profile path="/profile/" />
       <NotFound default />
     </Router>*/
-    
   );
 };
 

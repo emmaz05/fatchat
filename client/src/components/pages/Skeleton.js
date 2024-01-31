@@ -45,11 +45,11 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       )}
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNz_OjSyy7O-PHIGGVVwnvOvCVdxL0pwM&libraries=places"></script>
 
-      <header class="header">
-        <a href="#" class="fatchat">
+      <header className="header">
+        <a href="#" className="fatchat">
           FatChat
         </a>
-        <nav class="navbar">
+        <nav className="navbar">
           <a href="./">Home</a>
           <a href="./feed">Circles</a>
           <a href="./">Map</a>

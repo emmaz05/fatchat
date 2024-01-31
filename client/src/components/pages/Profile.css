@@ -1,12 +1,6 @@
 /* Add this CSS to your stylesheet or component */
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600;700&display=swap");
 
-.fatchat {
-  font-size: 1.5rem;
-  text-decoration: none;
-  color: white;
-}
-
 .profile-main {
   display: flex;
   flex-direction: column;

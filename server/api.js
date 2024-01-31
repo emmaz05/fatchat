@@ -7,7 +7,9 @@
 |
 */
 
+// api.js
 const express = require("express");
+const router = express.Router();
 
 // import models so we can interact with the database
 const User = require("./models/user");
@@ -16,21 +18,24 @@ const Post = require("./models/post");
 // import authentication library
 const auth = require("./auth");
 
-// api endpoints: all these paths will be prefixed with "/api/"
-const router = express.Router();
-
 //initialize socket
 const socketManager = require("./server-socket");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
-router.get("/whoami", (req, res) => {
+router.get("/whoami", async (req, res) => {
   if (!req.user) {
     // not logged in
     return res.send({});
   }
 
-  res.send(req.user);
+  try {
+    const userData = await User.findById(req.user._id);
+    res.send(userData);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 });
 
 router.post("/initsocket", (req, res) => {
@@ -45,11 +50,34 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 //Post commands
-router.get("/posts", (req, res) => {
-  Post.find({}).then((posts) => res.send(posts));
+router.get("/posts", async (req, res) => {
+  try {
+    const posts = await Post.find({});
+    res.send(posts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 });
 
-router.post("/post", auth.ensureLoggedIn, (req, res) => {
+router.put("/updateBio", async (req, res) => {
+  const { user_id, bio } = req.body;
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(user_id, { bio }, { new: true });
+
+    if (updatedUser) {
+      res.json({ success: true, message: "Bio updated successfully" });
+    } else {
+      res.status(404).json({ success: false, message: "User not found or no changes made" });
+    }
+  } catch (error) {
+    console.error("Error updating bio:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+router.post("/post", auth.ensureLoggedIn, async (req, res) => {
   const newPost = new Post({
     creator_name: req.user.name,
     creator_id: req.user._id,
@@ -63,11 +91,14 @@ router.post("/post", auth.ensureLoggedIn, (req, res) => {
     // content: req.body.content,
   });
 
-  console.log(newPost);
-
-  newPost.save().then((post) => res.send(post));
+  try {
+    const savedPost = await newPost.save();
+    res.send(savedPost);
+  } catch (error) {
+    console.error("Error saving post:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 });
-
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
