@@ -47,7 +47,6 @@ const Map = (props) => {
         coord={postObj.coord}
       />
     ));
-    console.log("postsList: ", { postsList });
   }
 
   const handleDeletePost = (postId) => {

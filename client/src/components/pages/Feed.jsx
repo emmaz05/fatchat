@@ -29,7 +29,6 @@ const Feed = (props) => {
         caption={postObj.caption}
       />
     ));
-    console.log(postsList);
   }
 
   return (

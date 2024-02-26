@@ -17,7 +17,6 @@ const NewPostInput = (props) => {
     try {
       const results = await geocodeByAddress(address);
       const latLng = await getLatLng(results[0]);
-      console.log(latLng);
       props.onSubmit(captionVal, latLng);
       setCaptionVal("");
       setAddress("");

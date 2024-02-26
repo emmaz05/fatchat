@@ -50,8 +50,6 @@ const Profile = (props) => {
     return <p>Loading...</p>;
   }
 
-  console.log("postObj:", userPosts);
-  console.log("userid: ", userId);
   const filteredUserPosts = userPosts.filter((postObj) => postObj.creatorid === userId);
 
   return (
