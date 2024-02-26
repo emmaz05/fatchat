@@ -83,6 +83,14 @@ router.post("/post", auth.ensureLoggedIn, async (req, res) => {
     creatorid: req.body.creatorid,
     caption: req.body.caption,
     coord: req.body.coord,
+    loc_name: req.body.loc_name,
+    user_pic: req.body.user_pic,
+    // lat: req.body.lat,
+    // lng: req.body.lng,
+
+    // creator_id: req.user._id,
+    // creator_name: req.user.name,
+    // content: req.body.content,
   });
   newPost.save().then((post) => res.send(post));
 

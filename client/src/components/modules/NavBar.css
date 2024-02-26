@@ -47,7 +47,7 @@
 }
 
 /* CARD/POST */
-.Card-container {
+/* .Card-container {
   border: var(--darkgrey) 1px solid;
   border-radius: var(--xs);
   margin-top: var(--m);
@@ -82,4 +82,58 @@
 
 .Card-commentBody {
   margin: 0 0 var(--s);
-}
+} */
+  /* CARD/POST */
+  .Card-container {
+    border: var(--darkgrey) 1px solid;
+    border-radius: var(--xs);
+    margin-top: var(--m);
+    background-color: #cbdff3;
+    
+  }
+  
+  .Card-container:first-of-type {
+    margin-top: var(--l);
+  }
+  
+  .Card-story,
+  .Card-commentSection {
+    padding: var(--m) var(--l);
+  }
+  
+  .Card-storyUser {
+    font-size: 20px;
+    font-weight: 600;
+    color:  rgb(244, 152, 167);
+    font-family: "Lexend", sans-serif;
+
+  }
+
+  .Card-atSymbol {
+    font-size: 15px;
+    font-weight: 600;
+    color:  #ff748c;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: "Lexend", sans-serif;
+
+  }
+  
+  .Card-storyContent {
+    font-size: 20px;
+    margin: var(--s) 0 0;
+    color: #ffffff;
+    font-family: "Lexend", sans-serif;
+
+  }
+  
+  .Card-commentSection {
+    background-color: var(--grey);
+    border-top: 1px solid var(--darkgrey);
+  }
+  
+  .Card-commentBody {
+    margin: 0 0 var(--s);
+  }
+  

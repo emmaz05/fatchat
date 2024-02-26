@@ -6,6 +6,7 @@ const Feed = (props) => {
   const { userId } = props;
   const [posts, setPosts] = useState([]);
 
+
   //called when "Feed" component mounts
 
   useEffect(() => {
@@ -27,7 +28,14 @@ const Feed = (props) => {
         creator_id={postObj.creatorid}
         userId={userId}
         caption={postObj.caption}
+        coord={postObj.coord}
+        loc_name={postObj.loc_name}
+        user_pic={postObj.user_pic}
       />
+      
+
+      
+     
     ));
   }
 
